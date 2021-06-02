@@ -10,11 +10,8 @@ pip install -r requirements.txt
 ```
 # Starting the local webserver or API
 
-```bash
+<img href='server_running.png' />
 
-uvicorn app:app 
-
-```
 
 # Starting the local server in development
 ```bash
