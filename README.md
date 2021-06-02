@@ -16,6 +16,8 @@ pip install -r requirements.txt
 
 <img src='api_docs.png' />
 <img src='api_docs2.png' />
+<img src='api_docs3.png' />
+<img src='api_docs4.png' />
 
 # Starting the local server in development
 
