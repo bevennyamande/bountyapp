@@ -10,7 +10,7 @@ pip install -r requirements.txt
 ```
 ## Starting the local webserver or API
 
-<img src='server_running.png' />
+<img src='images/server_running.png' />
 
 - Navigate to http://127.0.0.1:8000/docs#/ & get the documentation of the API
 
@@ -25,3 +25,4 @@ pip install -r requirements.txt
 uvicorn app:app --reload
 ```
 ## Directory Structure
+<img src='images/directory structure.png' />
