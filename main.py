@@ -197,7 +197,7 @@ def show_prediction_labels_on_image(img_path, predictions):
     pil_image.show()
 
 
-@app.post("/post_image/")
+@app.post("/postimage/")
 async def create_upload_file(image: UploadFile = File(...)):
     train(TRAIN_DIR, model_save_path=MODEL_PATH)
     # image.filename = f"{uuid.uuid4()}.jpg"

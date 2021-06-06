@@ -39,6 +39,12 @@ pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
+## Testing with curl
+
+```bash
+curl -iL -X POST -H "Content-Type: multipart/form-data" -F "image=@test_bezos.jpeg" http://127.0.0.1:8000/postimage
+```
+
 ## Train Directory Structure
 - Contains the images to train the model please note the structure
 

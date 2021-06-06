@@ -28,7 +28,7 @@ if(isset($_FILES['image']['name'])){
                 curl_setopt($ch, CURLOPT_POST, true);
                 curl_setopt($ch, CURLOPT_TIMEOUT, 30);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, array(
-                    'body'=>'@'.$_SERVER['DOCUMENT_ROOT'].'/'.$uploadfile,
+                    'image'=>'@'.$_SERVER['DOCUMENT_ROOT'].'/'.$uploadfile,
                 ));
 
                 $resp = curl_exec($ch);
