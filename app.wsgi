@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import sys
-sys.path.insert(0,"/var/www/html/facial-recognition-reggy/")
+sys.path.insert(0,"/var/www/html/model/")
 
 from main import app as application
 application.secret_key = 'Add your secret key'
