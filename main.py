@@ -197,6 +197,10 @@ def show_prediction_labels_on_image(img_path, predictions):
     # Display the resulting image
     pil_image.show()
 
+@app.route("/")
+def index():
+    return "Application running successfully"
+
 
 @app.route("/postimage", methods=['POST'])
 def create_upload_file():
