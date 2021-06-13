@@ -10,9 +10,7 @@
 
 ### Tech Stack
 
-- FastAPI (API framework)
-- Uvicorn (server)
-- Python-multipart (Form data)
+- Flask (web framework)
 
 ## Installation
 - clone the repo or move the train.py, app.py and requirements.txt file to your project file directory
@@ -24,19 +22,10 @@ pip install -r requirements.txt
 
 ## Starting the local webserver or API
 
-<img src='images/server_running.png' />
-
-- Navigate to http://127.0.0.1:8000/docs#/ & get the documentation of the API
-
-<img src='images/api_docs.png' />
-<img src='images/api_docs2.png' />
-<img src='images/api_docs3.png' />
-<img src='images/api_docs4.png' />
-
-## Starting the local server in development
-
 ```bash
-uvicorn main:app --reload
+
+python main.py  
+
 ```
 
 ## Testing with curl
@@ -50,6 +39,3 @@ curl -iL -X POST -H "Content-Type: multipart/form-data" -F "image=@test_bezos.jp
 
 <img src='images/train_dir.png' />
 
-## Application and Folder Structureu
-
-<img src='images/directory structure.png' />

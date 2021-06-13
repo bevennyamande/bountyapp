@@ -5,10 +5,11 @@ import face_recognition
 from sklearn import neighbors
 from PIL import Image, ImageDraw
 from face_recognition.face_recognition_cli import image_files_in_folder
-from fastapi import FastAPI, File, UploadFile
-from train import *  # import everything from the train directory
+from werkzeug.utils import secure_filename
+from flask import Flask, request
 
-app = FastAPI()
+
+app = Flask(__name__)
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 MODEL_PATH = os.path.join(BASE_DIR, "trained_knn_model.clf")
@@ -197,19 +198,20 @@ def show_prediction_labels_on_image(img_path, predictions):
     pil_image.show()
 
 
-@app.post("/postimage/")
-async def create_upload_file(image: UploadFile = File(...)):
+@app.route("/postimage", methods=['POST'])
+def create_upload_file():
     train(TRAIN_DIR, model_save_path=MODEL_PATH)
     # image.filename = f"{uuid.uuid4()}.jpg"
-    contents = await image.read()
     os.makedirs(TEMP_DIR, exist_ok=True)
-
-    with open(os.path.join(TEMP_DIR, image.filename), "wb") as f:
-        f.write(contents)
-
-    predictions = predict(os.path.join(TEMP_DIR, image.filename), model_path=MODEL_PATH)
+    image = request.files['image']
+    imagename = secure_filename(image.filename)
+    image.save(os.path.join(TEMP_DIR ,imagename))
+    predictions = predict(os.path.join(TEMP_DIR, imagename), model_path=MODEL_PATH)
     try:
-        os.remove(os.path.join(TEMP_DIR, image.filename))
+        os.remove(os.path.join(TEMP_DIR, imagename))
     except Exception as e:
         pass
     return {"Predictions": predictions}
+
+if __name__ == '__main__':
+    app.run(debug=True)
