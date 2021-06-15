@@ -188,7 +188,7 @@ def show_prediction_labels_on_image(img_path, predictions):
 
 @app.route("/")
 def index():
-    return "Application running successfully"
+    return "Application running successfully, use /postimage to send images to the api"
 
 
 @app.route("/postimage", methods=['POST'])
