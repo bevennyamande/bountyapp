@@ -186,19 +186,25 @@ def show_prediction_labels_on_image(img_path, predictions):
     # Display the resulting image
     pil_image.show()
 
+
+@app.before_request
+def train_model():
+    classifier = train(TRAIN_DIR, model_save_path=MODEL_PATH)
+    return
+
+
 @app.route("/")
 def index():
     return "Application running successfully, use /postimage to send images to the api"
 
 
-@app.route("/postimage", methods=['POST'])
+@app.route("/postimage", methods=["POST"])
 def create_upload_file():
-    train(TRAIN_DIR, model_save_path=MODEL_PATH)
     # image.filename = f"{uuid.uuid4()}.jpg"
     os.makedirs(TEMP_DIR, exist_ok=True)
-    image = request.files['image']
+    image = request.files["image"]
     imagename = secure_filename(image.filename)
-    image.save(os.path.join(TEMP_DIR ,imagename))
+    image.save(os.path.join(TEMP_DIR, imagename))
     predictions = predict(os.path.join(TEMP_DIR, imagename), model_path=MODEL_PATH)
     try:
         os.remove(os.path.join(TEMP_DIR, imagename))
@@ -206,5 +212,6 @@ def create_upload_file():
         pass
     return jsonify(predictions)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
+if __name__ == "__main__":
+    app.run()
