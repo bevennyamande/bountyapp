@@ -6,7 +6,7 @@ from sklearn import neighbors
 from PIL import Image, ImageDraw
 from face_recognition.face_recognition_cli import image_files_in_folder
 from werkzeug.utils import secure_filename
-from flask import Flask, request
+from flask import Flask, request, jsonify
 
 
 app = Flask(__name__)
@@ -204,7 +204,7 @@ def create_upload_file():
         os.remove(os.path.join(TEMP_DIR, imagename))
     except Exception as e:
         pass
-    return {"Predictions": predictions}
+    return jsonify(predictions)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
